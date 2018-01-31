@@ -7,7 +7,8 @@
         </g>
         <g v-for="item in listLine" :key="item.key">
           <line :x1="item.x" :x2="item.x" y1="0" y2="55" fill="red" stroke=rgba(19,100,205,0.1)></line>
-      </g>
+        </g>
+        <line :x1="lineCurTime" y1="0" :x2="lineCurTime" y2="55" stroke="#007DFF" ></line>
       </svg>
   </div>
 </template>
