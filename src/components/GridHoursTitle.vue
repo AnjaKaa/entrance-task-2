@@ -4,9 +4,9 @@
       <g v-for="item in listHours"  :key="item.key">
         <text :x="item.x" y=20 v-bind:class="{ past: item.past }">{{item.hour}}</text>
       </g>
-      <rect :x="currentTime.xrect" y=7 width=40 height=20 fill="#007DFF" rx=10 ry=10></rect>
-      <line :x1="currentTime.xline" y1="20" :x2="currentTime.xline" y2="55" stroke="#007DFF" ></line>
-      <text :x="currentTime.x" y=20 class="currentTime">{{currentTime.time}}</text>
+      <rect :x="currentTime().xrect" y=7 width=40 height=20 fill="#007DFF" rx=10 ry=10></rect>
+      <line :x1="currentTime().xline" y1="20" :x2="currentTime().xline" y2="55" stroke="#007DFF" ></line>
+      <text :x="currentTime().x" y=20 class="currentTime">{{currentTime().time}}</text>
 
     </svg>
   </div>
@@ -31,7 +31,9 @@ export default {
         })
       }
       return list
-    },
+    }
+  },
+  methods: {
     currentTime: function () {
       let curDate = new Date()
       let options = {

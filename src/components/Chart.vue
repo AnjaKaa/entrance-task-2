@@ -21,10 +21,10 @@
         <div class="tableRow" v-for="room in getListRoomsForFloor(floor)" :key="room.roomId">
           <div class="tableRowTitle">
             <b>{{room.roomTitle}}</b> <br/>
-            <span>3-6 человек</span>
+            <span>{{room.capacity}}</span>
           </div>
           <div class="tableRowContent">
-            <row-chart :listDrawEvents="drawEventList(floor,room.roomId)"/>
+            <row-chart :listDrawEvents="drawEventList(floor,room.roomId)" :roomTitle="room.roomTitle"/>
           </div>
         </div>
        </div>
@@ -51,8 +51,8 @@ export default {
                 {
                   'evenId': 1,
                   'eventTitle': 'Event 1',
-                  'dataStart': '2018-01-30T08:00:00.165Z',
-                  'dataEnd': '2018-01-30T09:00:00.165Z',
+                  'dateStart': '2018-02-04T08:00:00.165Z',
+                  'dateEnd': '2018-02-04T09:00:00.165Z',
                   'participants': [
                     {
                       'id': 1,
@@ -77,8 +77,8 @@ export default {
                 {
                   'evenId': 2,
                   'eventTitle': 'Event 2',
-                  'dataStart': '2018-01-30T13:00:00.165Z',
-                  'dataEnd': '2018-01-30T19:00:00.165Z',
+                  'dateStart': '2018-02-04T13:00:00.165Z',
+                  'dateEnd': '2018-02-04T19:00:00.165Z',
                   'participants': [
                     {
                       'id': 1,
@@ -108,10 +108,10 @@ export default {
               'capacity': '10',
               'listEvents': [
                 {
-                  'evenId': 1,
+                  'evenId': 4,
                   'eventTitle': 'Event 3',
-                  'dataStart': '2018-01-30T09:05:00.165Z',
-                  'dataEnd': '2018-01-30T10:18:00.165Z',
+                  'dateStart': '2018-02-04T09:05:00.165Z',
+                  'dateEnd': '2018-02-04T10:18:00.165Z',
                   'participants': [
                     {
                       'id': 1,
@@ -145,10 +145,10 @@ export default {
               'capacity': '3-6',
               'listEvents': [
                 {
-                  'evenId': 1,
-                  'eventTitle': 'Event 1',
-                  'dataStart': '2018-01-30T10:00:00.165Z',
-                  'dataEnd': '2018-01-30T11:00:00.165Z',
+                  'evenId': 5,
+                  'eventTitle': 'Event 4',
+                  'dateStart': '2018-02-04T10:00:00.165Z',
+                  'dateEnd': '2018-02-04T11:00:00.165Z',
                   'participants': [
                     {
                       'id': 1,
@@ -171,10 +171,10 @@ export default {
                   ]
                 },
                 {
-                  'evenId': 2,
-                  'eventTitle': 'Event 2',
-                  'dataStart': '2018-01-30T16:15:00.165Z',
-                  'dataEnd': '2018-01-30T18:00:00.165Z',
+                  'evenId': 6,
+                  'eventTitle': 'Event 5',
+                  'dateStart': '2018-02-04T16:15:00.165Z',
+                  'dateEnd': '2018-02-04T18:00:00.165Z',
                   'participants': [
                     {
                       'id': 1,
@@ -204,10 +204,36 @@ export default {
               'capacity': '10',
               'listEvents': [
                 {
-                  'evenId': 1,
-                  'eventTitle': 'Event 3',
-                  'dataStart': '2018-01-30T11:00:00.165Z',
-                  'dataEnd': '2018-01-30T11:30:00.165Z',
+                  'evenId': 7,
+                  'eventTitle': 'Event 6',
+                  'dateStart': '2018-02-04T11:00:00.165Z',
+                  'dateEnd': '2018-02-04T11:30:00.165Z',
+                  'participants': [
+                    {
+                      'id': 1,
+                      'login': 'user1',
+                      'homeFloor': '10',
+                      'avatarUrl': 'http://lorempixel/200/200/people'
+                    },
+                    {
+                      'id': 2,
+                      'login': 'user2',
+                      'homeFloor': '3',
+                      'avatarUrl': 'http://lorempixel/200/200/people'
+                    },
+                    {
+                      'id': 3,
+                      'login': 'user3',
+                      'homeFloor': '7',
+                      'avatarUrl': 'http://lorempixel/200/200/people'
+                    }
+                  ]
+                },
+                {
+                  'evenId': 8,
+                  'eventTitle': 'Event 7',
+                  'dateStart': '2018-02-04T15:00:00.165Z',
+                  'dateEnd': '2018-02-04T16:00:00.165Z',
                   'participants': [
                     {
                       'id': 1,
@@ -237,10 +263,10 @@ export default {
               'capacity': '3-6',
               'listEvents': [
                 {
-                  'evenId': 1,
-                  'eventTitle': 'Event 1',
-                  'dataStart': '2018-01-30T11:10:00.165Z',
-                  'dataEnd': '2018-01-30T11:45:00.165Z',
+                  'evenId': 9,
+                  'eventTitle': 'Event 8',
+                  'dateStart': '2018-02-04T11:10:00.165Z',
+                  'dateEnd': '2018-02-04T11:45:00.165Z',
                   'participants': [
                     {
                       'id': 1,
@@ -263,10 +289,10 @@ export default {
                   ]
                 },
                 {
-                  'evenId': 2,
-                  'eventTitle': 'Event 2',
-                  'dataStart': '2018-01-30T13:00:00.165Z',
-                  'dataEnd': '2018-01-30T19:00:00.165Z',
+                  'evenId': 10,
+                  'eventTitle': 'Event 9',
+                  'dateStart': '2018-02-04T13:00:00.165Z',
+                  'dateEnd': '2018-02-04T19:00:00.165Z',
                   'participants': [
                     {
                       'id': 1,
@@ -296,10 +322,10 @@ export default {
               'capacity': '10',
               'listEvents': [
                 {
-                  'evenId': 1,
-                  'eventTitle': 'Event 3',
-                  'dataStart': '2018-01-30T09:20:00.165Z',
-                  'dataEnd': '2018-01-30T10:00:00.165Z',
+                  'evenId': 11,
+                  'eventTitle': 'Event 10',
+                  'dateStart': '2018-02-04T09:20:00.165Z',
+                  'dateEnd': '2018-02-04T10:00:00.165Z',
                   'participants': [
                     {
                       'id': 1,
@@ -344,16 +370,31 @@ export default {
     getListRoomsForFloor: function (numberFloor) {
       return this.allEvents.filter((item) => item.numberFloor === numberFloor)[0].listRooms || []
     },
+    getListRoomsAll: function () {
+      let res = []
+      this.allEvents.forEach((item) => { res = res.concat(item.listRooms) })
+      return res
+    },
+    getTitleRoom: function (id) {
+      let list = this.getListRoomsAll()
+      return list.find((item) => item.roomId === id).roomTitle
+    },
     listEvents: function (floor, roomId) {
       return this.getListRoomsForFloor(floor)
         .filter((room) => room.roomId === roomId)[0].listEvents
     },
     drawEventList: function (floor, roomId) {
       return this.listEvents(floor, roomId).map((event) => {
-        let beginDate = new Date(event.dataStart)
-        let endDate = new Date(event.dataEnd)
+        let beginDate = new Date(event.dateStart)
+        let endDate = new Date(event.dateEnd)
         return {
           eventId: event.eventId,
+          evetTitle: event.eventTitle,
+          eventDateStart: event.dateStart,
+          eventDateEnd: event.dateEnd,
+          firstUser: event.participants.length ? event.participants[0] : null,
+          countUsers: event.participants.length,
+          roomTitle: this.getTitleRoom(roomId),
           xbegintime: 40 + (beginDate.getHours() - 8 - 3) * 60 + beginDate.getMinutes(),
           lengthevent: (endDate.getHours() - 8 - 3) * 60 + endDate.getMinutes() - (beginDate.getHours() - 8 - 3) * 60 - beginDate.getMinutes()
         }
@@ -388,6 +429,7 @@ export default {
     padding-left: 25px;
       min-width: 225px;
       max-width: 225px;
+      min-height: 44px;
       text-align: left;
       margin: auto;
   }

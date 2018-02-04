@@ -9,40 +9,38 @@
     </el-header>
     <el-main>
       <el-row class='rowContainer'>
-        <h2 class="text-left">Новая встреча</h2>
+        <h2 class="text-left">Редактирование встречи</h2>
         <el-form ref="form" :model="form" label-width="100%" label-position="top" class="text-left">
-          <el-col span="11">
+          <el-col span="10">
             <el-form-item label="Тема" >
               <el-input v-model="form.topic" ></el-input>
             </el-form-item>
             <el-form-item label="Участники" >
               <el-input v-model="form.participants" placeholder="Например, Тор Одинович" ></el-input>
             </el-form-item>
-            <span class="participant">
-              <div class="participantImg">
-                <img src='http://lorempixel.com/200/200/people' width="100%" height="100%" alt="user1">
-              </div>
-              <span class="participanttext">user1</span>
-              <a class="deleteParticipantBtn"><img  src="./../assets/close.svg"/></a>
-            </span>
-            <span class="participant">
-              <div class="participantImg">
-                <img src='http://lorempixel.com/250/250/people' width="100%" height="100%"  alt="user2">
-              </div>
-              <span class="participanttext">user2</span>
-              <a class="deleteParticipantBtn"><img  src="./../assets/close.svg"/></a>
-            </span>
-            <span class="participant">
-              <div class="participantImg">
-                <img src='http://lorempixel.com/300/300/people' width="100%" height="100%"  alt="user3">
-              </div>
-              <span class="participanttext">user3</span>
-              <a class="deleteParticipantBtn"><img  src="./../assets/close.svg"/></a>
-            </span>
+          <span class="participant">
+            <div class="participantImg">
+              <img src='http://lorempixel.com/200/200/people' width="100%" height="100%" alt="user1">
+            </div>
+            <span class="participanttext">user1</span>
+            <a class="deleteParticipantBtn"><img  src="./../assets/close.svg"/></a>
+          </span>
+          <span class="participant">
+            <div class="participantImg">
+              <img src='http://lorempixel.com/250/250/people' width="100%" height="100%"  alt="user2">
+            </div>
+            <span class="participanttext">user2</span>
+            <a class="deleteParticipantBtn"><img  src="./../assets/close.svg"/></a>
+          </span>
+          <span class="participant">
+            <div class="participantImg">
+              <img src='http://lorempixel.com/300/300/people' width="100%" height="100%"  alt="user3">
+            </div>
+            <span class="participanttext">user3</span>
+            <a class="deleteParticipantBtn"><img  src="./../assets/close.svg"/></a>
+          </span>
            </el-col>
-          <el-col span="11" offset="2">
-
-            <a class="removeEvent"><img  src="./../assets/close.svg"/></a>
+          <el-col span="10" offset="2">
             <el-row >
               <el-col span="12" >
                 <el-form-item label="Дата">
@@ -106,7 +104,7 @@
 </template>
 <script>
 export default {
-  name: 'AddEvent',
+  name: 'EditEvent',
   data () {
     return {
       form: {
@@ -122,7 +120,7 @@ export default {
 </script>
 <style>
   .rowContainer {
-    max-width: 800px;
+    max-width: 900px;
     margin:auto;
   }
 
@@ -168,28 +166,5 @@ export default {
 
   .el-button+.el-button {
     margin: 5px 0;
-  }
-
-  .removeEvent{
-    display: block;
-    position: absolute;
-    top: 8px;
-    right: 8px;
-    min-width: 24px;
-    max-width: 24px;
-    min-height: 24px;
-    max-height: 24px;
-    background: #e9ecef;
-    border-radius: 50%;
-    text-align: center;
-  }
-  .removeEvent:hover {
-    background: #cccccc;
-  }
-
-  .removeEvent img {
-    width:10px;
-    height:10px;
-    margin-top: 7px;
   }
 </style>
