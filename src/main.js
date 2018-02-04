@@ -3,13 +3,11 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
-import Element from 'element-ui'
-import lang from 'element-ui/lib/locale/lang/en'
-import locale from 'element-ui/lib/locale'
+import ElementUI from 'element-ui'
+import locale from 'element-ui/lib/locale/lang/ru-Ru'
 
 // configure language
-locale.use(lang)
-Vue.use(Element)
+Vue.use(ElementUI, { locale })
 
 /* eslint-disable no-new */
 new Vue({

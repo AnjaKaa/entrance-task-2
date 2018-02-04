@@ -13,7 +13,7 @@
       </div>
       <div class="participants">
         <div class="participantImg">
-          <img src="http://lorempixel.com/200/200/people"  width="100%" height="100%" >
+          <img src='./../assets/avatar.jpg'  width="100%" height="100%" >
         </div>
         {{event.firstUser.login}} и {{event.countUsers-1}} участников
       </div>
