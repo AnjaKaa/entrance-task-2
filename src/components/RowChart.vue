@@ -35,7 +35,8 @@ export default {
   },
   data () {
     return {
-      currentTitle: ''
+      currentTitle: '',
+      curDate: new Date()
     }
   },
   components: {
@@ -59,9 +60,13 @@ export default {
     },
 
     lineCurTime: function () {
-      let curDate = new Date()
-      return (40 + (curDate.getHours() - 8) * 60 + curDate.getMinutes())
+      return (40 + (this.curDate.getHours() - 8) * 60 + this.curDate.getMinutes())
     }
+  },
+  mounted: function () {
+    setInterval(() => {
+      this.curDate = new Date()
+    }, 1000)
   }
 }
 </script>

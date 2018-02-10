@@ -16,6 +16,7 @@ export default {
   name: 'GridHours',
   data () {
     return {
+      curDate: new Date()
     }
   },
   computed: {
@@ -35,19 +36,23 @@ export default {
   },
   methods: {
     currentTime: function () {
-      let curDate = new Date()
       let options = {
         hour: 'numeric',
         minute: 'numeric'
       }
-      let x = (25 + (curDate.getHours() - 8) * 60 + curDate.getMinutes())
+      let x = (25 + (this.curDate.getHours() - 8) * 60 + this.curDate.getMinutes())
       return {
-        time: curDate.toLocaleString('ru', options),
+        time: this.curDate.toLocaleString('ru', options),
         x: x,
         xrect: x - 7,
         xline: x + 15
       }
     }
+  },
+  mounted: function () {
+    setInterval(() => {
+      this.curDate = new Date()
+    }, 1000)
   }
 }
 </script>
