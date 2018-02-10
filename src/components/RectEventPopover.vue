@@ -24,7 +24,7 @@
 import moment from 'moment'
 export default {
   name: 'RectEventPopover',
-  props: ['event'],
+  props: ['event','currentWidth'],
 
   data () {
     return {
@@ -44,12 +44,8 @@ export default {
   },
   methods: {
     getCoeff: function () {
-      // console.log(document.querySelector('body').offsetWidth - 250)
-      let RowContent = document.querySelector('.gridEvent')
-      let widthRowContent = 1000
-      if (RowContent) widthRowContent = RowContent.offsetWidth
-      this.coeff = widthRowContent / 1000
-      return widthRowContent / 1000
+      this.coeff = this.currentWidth / 1000
+      return this.currentWidth / 1000
     },
     styleObject: function () {
       return {

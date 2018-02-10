@@ -15,7 +15,7 @@
         <line :x1="lineCurTime()" y1="0" :x2="lineCurTime()" y2="55" stroke="#007DFF" ></line>
     </svg>
       <div v-for="event in listDrawEvents" :key="event.eventId" >
-          <rect-event-popover :event="event" class="popover" />
+          <rect-event-popover :event="event" :currentWidth="currentWidth" class="popover" />
     </div>
   </div>
 </template>
@@ -36,7 +36,8 @@ export default {
   data () {
     return {
       currentTitle: '',
-      curDate: new Date()
+      curDate: new Date(),
+      currentWidth: 1000
     }
   },
   components: {
@@ -66,6 +67,8 @@ export default {
   mounted: function () {
     setInterval(() => {
       this.curDate = new Date()
+      this.currentWidth = document.querySelector('.svg').clientWidth
+      console.log(this.currentWidth)
     }, 1000)
   }
 }
