@@ -24,11 +24,10 @@
 import moment from 'moment'
 export default {
   name: 'RectEventPopover',
-  props: ['event','currentWidth'],
+  props: ['event', 'coeff'],
 
   data () {
     return {
-      coeff: 1
     }
   },
   computed: {
@@ -43,16 +42,12 @@ export default {
     }
   },
   methods: {
-    getCoeff: function () {
-      this.coeff = this.currentWidth / 1000
-      return this.currentWidth / 1000
-    },
     styleObject: function () {
       return {
         position: 'absolute',
-        left: (this.event.xbegintime * this.getCoeff()) + 'px',
+        left: (this.event.xbegintime * this.coeff) + 'px',
         top: '5px',
-        width: (this.event.lengthevent * this.getCoeff()) + 'px',
+        width: (this.event.lengthevent * this.coeff) + 'px',
         height: '30px',
         zIndex: 3,
         color: 'red'

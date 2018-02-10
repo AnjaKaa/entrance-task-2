@@ -36,3 +36,9 @@ export default {
   }
 }
 </script>
+<style>
+ .el-container {
+    max-width: 1440px;
+    margin: auto;
+ }
+</style>

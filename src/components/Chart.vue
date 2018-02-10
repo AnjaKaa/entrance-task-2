@@ -9,6 +9,9 @@
           <grid-hours-title/>
         </div>
       </div>
+      <a href="./#/add_event" class="rowAddButton">
+        <el-button type="primary" >+</el-button>
+      </a>
       <div v-for="floor in listFloorWithRooms()" :key="floor">
         <div class="tableRow">
           <div class="tableRowTitle">
@@ -79,6 +82,32 @@ export default {
                   'eventTitle': 'Event 2',
                   'dateStart': '2018-02-04T13:00:00.165Z',
                   'dateEnd': '2018-02-04T19:00:00.165Z',
+                  'participants': [
+                    {
+                      'id': 1,
+                      'login': 'user1',
+                      'homeFloor': '10',
+                      'avatarUrl': 'http://lorempixel/200/200/people'
+                    },
+                    {
+                      'id': 2,
+                      'login': 'user2',
+                      'homeFloor': '3',
+                      'avatarUrl': 'http://lorempixel/200/200/people'
+                    },
+                    {
+                      'id': 3,
+                      'login': 'user3',
+                      'homeFloor': '7',
+                      'avatarUrl': 'http://lorempixel/200/200/people'
+                    }
+                  ]
+                },
+                {
+                  'evenId': 11,
+                  'eventTitle': 'Event 11',
+                  'dateStart': '2018-02-04T19:00:00.165Z',
+                  'dateEnd': '2018-02-04T20:59:00.165Z',
                   'participants': [
                     {
                       'id': 1,
@@ -394,6 +423,7 @@ export default {
           eventDateEnd: event.dateEnd,
           firstUser: event.participants.length ? event.participants[0] : null,
           countUsers: event.participants.length,
+          roomId: roomId,
           roomTitle: this.getTitleRoom(roomId),
           xbegintime: 40 + (beginDate.getHours() - 8 - 3) * 60 + beginDate.getMinutes(),
           lengthevent: (endDate.getHours() - 8 - 3) * 60 + endDate.getMinutes() - (beginDate.getHours() - 8 - 3) * 60 - beginDate.getMinutes()
@@ -404,7 +434,7 @@ export default {
 }
 </script>
 <style scoped>
-  .wrap-chart {
+  .wrap-table {
     position: relative;
   }
 
@@ -412,6 +442,7 @@ export default {
     margin: 0;
     padding: 0;
     list-style: none;
+      overflow-x: auto;
   }
 
   .tableTitleRow{
@@ -423,6 +454,7 @@ export default {
       display: flex;
       max-height: 46px;
       overflow:hidden;
+      min-width: 1225px;
     }
 
   .tableRowTitle {
@@ -442,8 +474,26 @@ export default {
 
   .tableRowContent{
     position: relative;
-    min-width:700px;
     width:100%;
     background: #f6f7f9;
   }
+
+  .rowAddButton {
+    display: none;
+    max-height: 30px;
+    line-height: 30px;
+    padding:  0;
+    margin: 0;
+    font-size: 20px;
+    position: absolute;
+    z-index: 1000;
+
+  }
+
+  .rowAddButton button{
+    padding:  0 20px;
+    margin: 0;
+    font-size: 20px;
+  }
+
 </style>

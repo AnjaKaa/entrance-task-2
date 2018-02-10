@@ -24,7 +24,6 @@ export default {
 
  .el-container {
       min-height: 100vh;
-      min-width: 945px;
   }
 
   .el-header {

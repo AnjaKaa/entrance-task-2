@@ -1,10 +1,10 @@
 <template>
   <div class="gridEvent"  >
-    <svg width="100%" minHeight="100%" viewBox="0 0 1000 50">
+    <svg width="100%" height="100%" viewBox="0 0 1000 50">
       <rect  x="0" y="5" width="1000" height="28" fill="#ffffff"></rect>
+      <rect v-on:click="visibleAddButton" :id="roomId" :x="lineCurTime()"  y="5" :width="1000-lineCurTime()" height="28" fill="#ffffff" ></rect>
       <g v-for="event in listDrawEvents" :key="event.eventId" >
-        <rect v-on:mouseover="onMouseOverRect"
-              class="event"
+        <rect class="event"
               :data-title="event.evetTitle"
               :x="event.xbegintime" y="5" :width="event.lengthevent" height="28">
         </rect>
@@ -12,10 +12,10 @@
       <g v-for="item in listLine" :key="item.key">
         <line :x1="item.x" :x2="item.x" y1="0" y2="55" fill="red" stroke=rgba(19,100,205,0.1)></line>
       </g>
-        <line :x1="lineCurTime()" y1="0" :x2="lineCurTime()" y2="55" stroke="#007DFF" ></line>
+        <line v-on:click="visibleAddButton" :x1="lineCurTime()" y1="0" :x2="lineCurTime()" y2="55" stroke="#007DFF" ></line>
     </svg>
       <div v-for="event in listDrawEvents" :key="event.eventId" >
-          <rect-event-popover :event="event" :currentWidth="currentWidth" class="popover" />
+          <rect-event-popover :event="event" :coeff="coeff" class="popover" />
     </div>
   </div>
 </template>
@@ -31,13 +31,15 @@ export default {
       xbegintime: Number,
       lengthevent: Number
     },
-    roomTitle: String
+    roomTitle: String,
+    roomId: Number
   },
   data () {
     return {
-      currentTitle: '',
       curDate: new Date(),
-      currentWidth: 1000
+      currentWidth: 1000,
+      coeff: 1,
+      xLineTime: 0
     }
   },
   components: {
@@ -56,19 +58,25 @@ export default {
     }
   },
   methods: {
-    onMouseOverRect: function (e) {
-      this.currentTitle = e.target.getAttribute('data-title')
-    },
-
     lineCurTime: function () {
       return (40 + (this.curDate.getHours() - 8) * 60 + this.curDate.getMinutes())
+    },
+    coordsXLineCurTime: function () {
+      return 225 + (this.lineCurTime()) * this.coeff - document.querySelector('.listTableRow').scrollLeft
+    },
+
+    visibleAddButton: function (ev) {
+      let top = ev.target.getBoundingClientRect().y - document.querySelector('.listTableRow').getBoundingClientRect().y
+      document.querySelector('.rowAddButton').setAttribute('style', `display:block; left:${this.xLineTime + 30}px; top:${top}px;`)
+      // console.log(document.querySelector('.rowAddButton'))
     }
   },
   mounted: function () {
     setInterval(() => {
       this.curDate = new Date()
       this.currentWidth = document.querySelector('.svg').clientWidth
-      console.log(this.currentWidth)
+      this.coeff = this.currentWidth / 1000
+      this.xLineTime = this.coordsXLineCurTime()
     }, 1000)
   }
 }
@@ -76,9 +84,11 @@ export default {
 <style scoped>
   svg {
     z-index: 1;
+    min-height: 50px;
   }
   .gridEvent {
     position: relative;
+    min-width: 1000px;
   }
 
   .event {
