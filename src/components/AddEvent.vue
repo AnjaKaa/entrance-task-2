@@ -177,7 +177,7 @@ export default {
   },
   methods: {
     openMessageboxOk () {
-       let content = <div class="createMessage">
+      let content = <div class="createMessage">
         <h2>Встреча создана <br/>14 декабря, 15:00—17:00<br/>Готем · 4 этаж</h2>
       </div>
       this.$alert(content, '', {
@@ -351,6 +351,5 @@ export default {
     min-height: 40px;
     background: url("../assets/emoji2.svg") no-repeat center center;
   }
-
 
 </style>

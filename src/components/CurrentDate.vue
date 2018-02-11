@@ -1,7 +1,7 @@
 <template>
 <div class="wrapCurrentDate">
   <a class="prevDate"><img  src="./../assets/arrow2.svg"/></a>
-  <el-button type="text"><b>{{currentDate}}</b></el-button>
+  <el-button type="text" v-on:click = "visibleCalendar"><b>{{currentDateFormat}}</b></el-button>
   <a class="nextDate"><img  src="./../assets/arrow.svg"/></a>
 </div>
 </template>
@@ -9,21 +9,32 @@
 <script>
 export default {
   name: 'CurrentDate',
+  props: ['currentDate'],
   data () {
     return {
-      date: ''
     }
   },
   computed: {
-    currentDate: function () {
-      let curDate = new Date()
+    currentDateFormat: function () {
+      let curDate = this.currentDate
+      let today = new Date()
       let options = {
         day: 'numeric',
         month: 'long',
         year: 'numeric'
       }
 
-      return this.date ? this.date : curDate.toLocaleString('ru', options)
+      return this.curDate ? curDate.toLocaleString('ru', options) : today.toLocaleString('ru', options)
+    }
+  },
+  methods: {
+    visibleCalendar: function (ev) {
+      let calendar = document.querySelector('.calendar')
+      if (calendar.classList.contains('calendarShow')) {
+        calendar.classList.remove('calendarShow')
+      } else {
+        calendar.classList.add('calendarShow')
+      }
     }
   }
 }
@@ -31,6 +42,7 @@ export default {
 
 <style scoped>
 .wrapCurrentDate{
+  position: relative;
   display: flex;
   justify-content: space-between;
   padding: 16px 0;

@@ -3,7 +3,16 @@
     <div class="listTableRow">
       <div class="tableRow tableTitleRow">
         <div class="tableRowTitle">
-          <current-date/>
+          <current-date :currentDate="currentDate"/>
+          <div class="calendar">
+            <el-date-picker
+              v-model="currentDate"
+              format="d MMMM, yyyy"
+              type="date"
+              placeholder="выберите дату">
+            </el-date-picker>
+            <el-button type="primary" v-on:click="hiddenCalendar">OK</el-button>
+          </div>
         </div>
         <div class="tableTitleRowContent">
           <grid-hours-title/>
@@ -43,6 +52,7 @@ export default {
   name: 'Chart',
   data () {
     return {
+      currentDate: new Date(),
       allEvents: [
         {'numberFloor': 7,
           'listRooms': [
@@ -429,6 +439,10 @@ export default {
           lengthevent: (endDate.getHours() - 8 - 3) * 60 + endDate.getMinutes() - (beginDate.getHours() - 8 - 3) * 60 - beginDate.getMinutes()
         }
       })
+    },
+    hiddenCalendar: function (ev) {
+      let calendar = document.querySelector('.calendar')
+      calendar.classList.remove('calendarShow')
     }
   }
 }
@@ -501,6 +515,23 @@ export default {
     padding:  0 20px;
     margin: 0;
     font-size: 20px;
+  }
+
+  .calendar{
+    position: absolute;
+    display: none;
+    top: 50px;
+    left: 20px;
+    width: 300px;
+    height: 70px;
+    z-index: 200;
+    background: #ffffff;
+    border:5px solif #eee;
+    border-radius: 10px;
+  }
+
+  .calendarShow{
+    display: block;
   }
 
 </style>
