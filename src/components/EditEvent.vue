@@ -10,96 +10,104 @@
     <el-main>
       <el-row class='rowContainer'>
         <h2 class="text-left">Редактировать встречу</h2>
+        <a class="removeEvent" @click="openMessageboxDelete"><img  src="./../assets/close.svg"/></a>
         <el-form ref="form" :model="form" label-width="100%" label-position="top" class="text-left">
-          <el-col :span=11>
-            <el-form-item label="Тема" >
-              <el-input v-model="form.topic" ></el-input>
-            </el-form-item>
-            <el-form-item label="Участники" >
-              <el-select v-model="form.participants" filterable placeholder="Например, Тор Одинович" >
-                <el-option
-                  v-for="item in form.optionsSelect"
-                  :key="item.value"
-                  :label="item.label"
-                  :value="item.value">
-                  <div class="participantImg">
-                    <img src='./../assets/avatar.jpg' width="100%" height="100%" :alt="item.value">
-                  </div>
-                  <span style="float: left">{{ item.value }}</span>
-                  <span style="float: left; color: #8492a6; font-size: 13px"> &middot; {{ item.floor }} этаж</span>
-                </el-option>
-              </el-select>
-            </el-form-item>
-            <span class="participant">
-              <div class="participantImg">
-                <img src='./../assets/avatar.jpg' width="100%" height="100%" alt="user1">
-              </div>
-              <span class="participanttext">user1</span>
-              <a class="deleteParticipantBtn"><img  src="./../assets/close.svg"/></a>
-            </span>
-            <span class="participant">
-              <div class="participantImg">
-                <img src='./../assets/avatar.jpg' width="100%" height="100%"  alt="user2">
-              </div>
-              <span class="participanttext">user2asdfg</span>
-              <a class="deleteParticipantBtn"><img  src="./../assets/close.svg"/></a>
-            </span>
-            <span class="participant">
-              <div class="participantImg">
-                <img src='./../assets/avatar.jpg' width="100%" height="100%"  alt="user3">
-              </div>
-              <span class="participanttext">user3qwerty</span>
-              <a class="deleteParticipantBtn"><img  src="./../assets/close.svg"/></a>
-            </span>
-           </el-col>
-          <el-col :span=11 :offset=2>
+          <el-row :gutter="10">
+            <el-col :sm="11" :xs="24">
+              <el-form-item label="Тема" >
+                <el-input v-model="form.topic" ></el-input>
+              </el-form-item>
 
-            <a class="removeEvent" @click="openMessageboxDelete"><img  src="./../assets/close.svg"/></a>
-            <el-row >
-              <el-col :span=12 >
-                <el-form-item label="Дата">
-                  <el-date-picker
-                    v-model="form.currentDate"
-                    type="date"
-                    format="d MMMM, yyyy"
-                    placeholder="">
-                  </el-date-picker>
-                </el-form-item>
-              </el-col>
-              <el-col :span=5 :offset=1>
-                <el-form-item label="Начало">
-                  <el-time-select
-                  v-model="form.timeStart"
-                  :picker-options="{
-                    start: '08:00',
-                    step: '00:05',
-                    end: '18:30'
-                  }"
-                  placeholder="">
-                  </el-time-select>
-                </el-form-item>
-              </el-col>
-              <el-col :span=5 :offset=1>
-                 <el-form-item label="Конец">
-                  <el-time-select
-                    v-model="form.timeEnd"
+            </el-col>
+            <el-col :sm="{span:11, offset:2}" :xs="24">
+              <el-row >
+                 <el-col :sm="12" :xs="24">
+                  <el-form-item label="Дата">
+                    <el-date-picker
+                      v-model="form.currentDate"
+                      type="date"
+                      format="d MMMM, yyyy"
+                      placeholder="">
+                    </el-date-picker>
+                  </el-form-item>
+                </el-col>
+                <el-col :sm="{span:5 , offset:1}" :xs="11">
+                  <el-form-item label="Начало">
+                    <el-time-select
+                    v-model="form.timeStart"
                     :picker-options="{
-                      start: '08:05',
-                      step: '00:15',
+                      start: '08:00',
+                      step: '00:05',
                       end: '18:30'
                     }"
                     placeholder="">
-                  </el-time-select>
-                </el-form-item>
-              </el-col>
-            </el-row>
-            <el-form-item label="Ваша переговорка">
-              <el-button type="primary" v-on:click="openMessageboxOk" style="min-width: 100%; text-align: left;">
-                 <b>16:00 - 16:30</b>
-                 Готем &middot; 4 этаж
-              </el-button>
-            </el-form-item>
-          </el-col>
+                    </el-time-select>
+                  </el-form-item>
+                </el-col>
+                <el-col  :sm="{span:5 , offset:1}" :xs="{span:11, offset:2}">
+                  <el-form-item label="Конец">
+                    <el-time-select
+                      v-model="form.timeEnd"
+                      :picker-options="{
+                        start: '08:05',
+                        step: '00:15',
+                        end: '18:30'
+                      }"
+                      placeholder="">
+                    </el-time-select>
+                  </el-form-item>
+                </el-col>
+              </el-row>
+            </el-col>
+          </el-row>
+          <el-row :gutter="10">
+            <el-col :sm="11" :xs="24">
+              <el-form-item label="Участники" >
+                <el-select v-model="form.participants" filterable placeholder="Например, Тор Одинович" >
+                  <el-option
+                    v-for="item in form.optionsSelect"
+                    :key="item.value"
+                    :label="item.label"
+                    :value="item.value">
+                    <div class="participantImg">
+                      <img src='./../assets/avatar.jpg' width="100%" height="100%" :alt="item.value">
+                    </div>
+                    <span style="float: left">{{ item.value }}</span>
+                    <span style="float: left; color: #8492a6; font-size: 13px"> &middot; {{ item.floor }} этаж</span>
+                  </el-option>
+                </el-select>
+              </el-form-item>
+              <span class="participant">
+                <div class="participantImg">
+                  <img src='./../assets/avatar.jpg' width="100%" height="100%" alt="user1">
+                </div>
+                <span class="participanttext">user1</span>
+                <a class="deleteParticipantBtn"><img  src="./../assets/close.svg"/></a>
+              </span>
+              <span class="participant">
+                <div class="participantImg">
+                  <img src='./../assets/avatar.jpg' width="100%" height="100%"  alt="user2">
+                </div>
+                <span class="participanttext">user2asdfg</span>
+                <a class="deleteParticipantBtn"><img  src="./../assets/close.svg"/></a>
+              </span>
+              <span class="participant">
+                <div class="participantImg">
+                  <img src='./../assets/avatar.jpg' width="100%" height="100%"  alt="user3">
+                </div>
+                <span class="participanttext">user3qwerty</span>
+                <a class="deleteParticipantBtn"><img  src="./../assets/close.svg"/></a>
+              </span>
+            </el-col>
+            <el-col>
+              <el-form-item label="Ваша переговорка">
+                <el-button type="primary" v-on:click="openMessageboxOk" style="min-width: 100%; text-align: left;">
+                  <b>16:00 - 16:30</b>
+                  Готем &middot; 4 этаж
+                </el-button>
+              </el-form-item>
+            </el-col>
+          </el-row>
 
         </el-form>
       </el-row>
@@ -120,6 +128,8 @@
   </el-container>
 </template>
 <script>
+import 'element-ui/lib/theme-chalk/display.css'
+
 export default {
   name: 'AddEvent',
   data () {
@@ -216,6 +226,7 @@ export default {
 </script>
 <style scoped>
   .rowContainer {
+    padding: 16px;
     max-width: 800px;
     margin:auto;
   }
@@ -343,5 +354,33 @@ export default {
     min-height: 40px;
     background: url("../assets/emoji2.svg") no-repeat center center;
   }
+
+   @media (max-width: 767px) {
+    .participant {
+      position: relative;
+      min-width: 100%;
+      min-height: 32px;
+    }
+    .participantImg {
+      width: 32px;
+      height: 32px;
+    }
+
+    .participanttext {
+       line-height: 32px;
+    }
+
+    .deleteParticipantBtn{
+      position: absolute;
+      right: 0;
+      display: inline-block;
+      line-height: 32px;
+      padding: 0 10px;
+      background: #e9ecef;
+      border-radius: 12px;
+      text-align: center;
+    }
+  }
+
 
 </style>

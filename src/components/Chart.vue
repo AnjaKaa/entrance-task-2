@@ -31,7 +31,7 @@
         </div>
         </div>
         <div class="tableRow" v-for="room in getListRoomsForFloor(floor)" :key="room.roomId">
-          <div class="tableRowTitle">
+          <div class="tableRowTitle titleRoom">
             <b>{{room.roomTitle}}</b> <br/>
             <span>{{room.capacity}}</span>
           </div>
@@ -444,6 +444,24 @@ export default {
       let calendar = document.querySelector('.calendar')
       calendar.classList.remove('calendarShow')
     }
+  },
+  mounted: function () {
+    setInterval(() => {
+      if (document.querySelector('.listTableRow')) {
+        let listTitle = document.querySelectorAll('.tableRowTitle b')
+        let scroll = document.querySelector('.listTableRow').scrollLeft
+
+        if (scroll > 181) {
+          listTitle.forEach((title) => {
+            title.classList.add('fixed')
+          })
+        } else {
+          listTitle.forEach((title) => {
+            title.classList.remove('fixed')
+          })
+        }
+      }
+    }, 1000)
   }
 }
 </script>
@@ -487,7 +505,7 @@ export default {
       margin: auto;
   }
 
-   .tableTitleRowContent{
+  .tableTitleRowContent{
     min-width:700px;
     width:100%;
     background: #ffffff;
@@ -532,6 +550,46 @@ export default {
 
   .calendarShow{
     display: block;
+  }
+
+  @media (max-width: 767px) {
+    .tableTitleRow {
+      min-height: 88px;
+    }
+    .tableTitleRow .tableRowTitle {
+      position: fixed;
+      min-width: 80vw;
+      padding: 0 10vw;
+      z-index: 200;
+    }
+
+   .tableTitleRow .tableTitleRowContent{
+     margin-top: 44px;
+     padding-left: 181px;
+     max-height: 32px;
+     border-top: 1px solid #eee;
+   }
+
+   .tableRowTitle {
+     padding-left: 16px;
+     max-width: 165px;
+     min-width: 165px;
+
+   }
+
+   .titleRoom b.fixed{
+      position: fixed;
+      z-index: 200;
+      background: #fff;
+      padding: 5px;
+      border-radius: 5px;
+      box-shadow: 3px 3px 10px #ccc;
+    }
+
+    .titleFloor b.fixed{
+      position: fixed;
+      z-index: 200;
+    }
   }
 
 </style>
