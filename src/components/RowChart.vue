@@ -62,20 +62,28 @@ export default {
       return (40 + (this.curDate.getHours() - 8) * 60 + this.curDate.getMinutes())
     },
     coordsXLineCurTime: function () {
-      return 225 + (this.lineCurTime()) * this.coeff - document.querySelector('.listTableRow').scrollLeft
+      let table = document.querySelector('.listTableRow')
+      let scrollLeft = 0
+      if (table) scrollLeft = table.scrollLeft
+      return 225 + (this.lineCurTime()) * this.coeff - scrollLeft
+
     },
 
     visibleAddButton: function (ev) {
-      let top = ev.target.getBoundingClientRect().y - document.querySelector('.listTableRow').getBoundingClientRect().y
-      document.querySelector('.rowAddButton').setAttribute('style', `display:block; left:${this.xLineTime + 30}px; top:${top}px;`)
-      // console.log(document.querySelector('.rowAddButton'))
+      let top = ev.target.getBoundingClientRect().top - document.querySelector('.listTableRow').getBoundingClientRect().top
+      let left = this.xLineTime + 30
+      document.querySelector('.rowAddButton').setAttribute('style', `display:block; left:${left}px; top:${top}px;`)
     }
   },
   mounted: function () {
     setInterval(() => {
       this.curDate = new Date()
-      this.currentWidth = document.querySelector('.svg').clientWidth
-      this.coeff = this.currentWidth / 1000
+      let grid = document.querySelector('.grid')
+
+      if (grid) {
+        this.currentWidth = grid.clientWidth
+        this.coeff = grid.clientWidth / 1000
+      }
       this.xLineTime = this.coordsXLineCurTime()
     }, 1000)
   }

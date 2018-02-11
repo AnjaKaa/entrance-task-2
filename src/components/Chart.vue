@@ -480,8 +480,6 @@ export default {
 
   .rowAddButton {
     display: none;
-    max-height: 30px;
-    line-height: 30px;
     padding:  0;
     margin: 0;
     font-size: 20px;
@@ -491,6 +489,8 @@ export default {
   }
 
   .rowAddButton button{
+    max-height: 30px;
+    line-height: 30px;
     padding:  0 20px;
     margin: 0;
     font-size: 20px;
