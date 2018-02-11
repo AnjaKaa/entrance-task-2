@@ -1,5 +1,6 @@
 <template>
   <div class="gridEvent"  >
+
     <svg width="100%" height="100%" viewBox="0 0 1000 50">
       <rect  x="0" y="5" width="1000" height="28" fill="#ffffff"></rect>
       <rect v-on:click="visibleAddButton" :id="roomId" :x="lineCurTime()"  y="5" :width="1000-lineCurTime()" height="28" fill="#ffffff" ></rect>
@@ -14,7 +15,7 @@
       </g>
         <line v-on:click="visibleAddButton" :x1="lineCurTime()" y1="0" :x2="lineCurTime()" y2="55" stroke="#007DFF" ></line>
     </svg>
-      <div v-for="event in listDrawEvents" :key="event.eventId" >
+     <div v-for="event in listDrawEvents" :key="event.eventId">
           <rect-event-popover :event="event" :coeff="coeff" class="popover" />
     </div>
   </div>
@@ -66,7 +67,6 @@ export default {
       let scrollLeft = 0
       if (table) scrollLeft = table.scrollLeft
       return 225 + (this.lineCurTime()) * this.coeff - scrollLeft
-
     },
 
     visibleAddButton: function (ev) {
@@ -91,7 +91,7 @@ export default {
 </script>
 <style scoped>
   svg {
-    z-index: 1;
+    z-index: 5;
     min-height: 50px;
   }
   .gridEvent {
@@ -103,18 +103,11 @@ export default {
     fill:#D5DFE9;
   }
 
-  .event:hover {
-    fill: #98A9B9;
-  }
-
-  .event:active {
-    fill: #98A9B9;
-  }
-
   .popover {
     position: absolute;
     top:0;
     left:0;
+    z-index: 0;
   }
 
 </style>

@@ -5,7 +5,9 @@
       width="300"
       trigger="hover">
       <div :style="styleObject()"
-        slot="reference"
+            v-on:mouseover="rectMouseOver"
+            v-on:mouseout="rectMouseOut"
+            slot="reference"
       ></div>
       <a href="./#/edit_event" class="editEvent"><img  src="./../assets/edit.svg"/></a>
       <div class="eventSettings">
@@ -42,15 +44,20 @@ export default {
     }
   },
   methods: {
+    rectMouseOver: function (ev) {
+      ev.target.classList.add('event_hover')
+    },
+    rectMouseOut: function (ev) {
+      ev.target.classList.remove('event_hover')
+    },
     styleObject: function () {
       return {
         position: 'absolute',
         left: (this.event.xbegintime * this.coeff) + 'px',
         top: '5px',
         width: (this.event.lengthevent * this.coeff) + 'px',
-        height: '30px',
-        zIndex: 3,
-        color: 'red'
+        height: 28*this.coeff+'px',
+        zIndex: 0
       }
     }
   }
@@ -81,6 +88,9 @@ export default {
 
   .eventSettings {
     margin-bottom: 20px;
+  }
+  .event_hover {
+    background: #98A9B9;
   }
 
   .participants {
