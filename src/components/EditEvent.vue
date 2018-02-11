@@ -99,7 +99,7 @@
                 <a class="deleteParticipantBtn"><img  src="./../assets/close.svg"/></a>
               </span>
             </el-col>
-            <el-col>
+            <el-col  :sm="{span:11, offset:2}"  :xs="24">
               <el-form-item label="Ваша переговорка">
                 <el-button type="primary" v-on:click="openMessageboxOk" style="min-width: 100%; text-align: left;">
                   <b>16:00 - 16:30</b>
