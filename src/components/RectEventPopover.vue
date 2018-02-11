@@ -56,7 +56,7 @@ export default {
         left: (this.event.xbegintime * this.coeff) + 'px',
         top: '5px',
         width: (this.event.lengthevent * this.coeff) + 'px',
-        height: 28*this.coeff+'px',
+        height: 28 * this.coeff + 'px',
         zIndex: 0
       }
     }

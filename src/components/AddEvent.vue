@@ -177,7 +177,10 @@ export default {
   },
   methods: {
     openMessageboxOk () {
-      this.$alert('This is a message', 'Title', {
+       let content = <div class="createMessage">
+        <h2>Встреча создана <br/>14 декабря, 15:00—17:00<br/>Готем · 4 этаж</h2>
+      </div>
+      this.$alert(content, '', {
         confirmButtonText: 'Хорошо',
         center: true,
         callback: action => {
@@ -185,17 +188,21 @@ export default {
             type: 'info',
             message: `action:${action}`
           })
-        }
+        },
+        showClose: false
       })
     },
     openMessageboxDelete () {
       // let title=<img  src="./../assets/edit.svg"/>
-      let content = 'Встреча будет удалена безвозвратно'
+      let content = <div class="deleteMessage">
+        <h2>Встреча будет <br/> удалена безвозвратно</h2>
+      </div>
 
       this.$confirm(content, '', {
         confirmButtonText: 'Удалить',
         cancelButtonText: 'Отмена',
-        center: true
+        center: true,
+        showClose: false
       }).then(() => {
         this.$message({
           type: 'success',
@@ -245,20 +252,8 @@ export default {
     text-align: center;
   }
 
-  .el-date-editor .el-input,.el-date-editor .el-input__inner {
-    width: 180px;
-  }
-
-  .el-date-editor--time-select .el-input,.el-date-editor--time-select .el-input__inner {
-    width: 72px;
-  }
-
   .recommendations {
     width: 100%;
-    margin: 5px 0;
-  }
-
-  .el-button+.el-button {
     margin: 5px 0;
   }
 
@@ -290,12 +285,26 @@ export default {
     min-width: 100%;
   }
 
-  .el-icon-time, .el-icon-date{
-    display:none;
+ .el-date-editor .el-input,.el-date-editor .el-input__inner {
+    width: 180px;
   }
 
-  .el-input--prefix .el-input__inner{
+  .el-date-editor--time-select .el-input,.el-date-editor--time-select .el-input__inner {
+    width: 72px;
+  }
+
+  .el-button+.el-button {
+    margin: 5px 0;
+  }
+
+  .el-input--prefix .el-input__inner,
+  .el-input--suffix .el-input__inner
+  {
     padding: 0 10px;
+  }
+
+  .el-icon-time, .el-icon-date{
+    display:none;
   }
 
   .el-date-editor.el-input, .el-date-editor.el-input__inner{
@@ -330,5 +339,18 @@ export default {
     letter-spacing: 0;
     line-height: 24px;
   }
+
+  .deleteMessage {
+    padding-top: 60px;
+    min-height: 40px;
+    background: url("../assets/emoji1.svg") no-repeat center center;
+  }
+
+   .createMessage {
+    padding-top: 100px;
+    min-height: 40px;
+    background: url("../assets/emoji2.svg") no-repeat center center;
+  }
+
 
 </style>

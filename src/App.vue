@@ -78,4 +78,36 @@ export default {
   .text-left {
     text-align: left;
   }
+
+  .el-input--prefix .el-input__inner,
+  .el-input--suffix .el-input__inner
+  {
+    padding: 0 10px;
+  }
+
+  .el-icon-time, .el-icon-date{
+    display:none;
+  }
+
+  .el-radio-button .el-radio-button__inner,
+  .el-radio-button__orig-radio:checked+.el-radio-button__inner{
+    display: block;
+    min-width: 100%;
+    margin-bottom: 5px;
+    text-align: left;
+    color:#000;
+    background-color: #E9ECEF;
+    border: 1px solid #dcdfe6;
+    border-radius: 4px;
+    box-shadow: none;
+  }
+
+  .el-radio-button.is-focus .el-radio-button__inner{
+    color: #fff;
+    background-color: #007DFF;
+  }
+
+  .el-message-box__content {
+    padding: 0;
+  }
 </style>

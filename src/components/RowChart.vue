@@ -1,6 +1,5 @@
 <template>
   <div class="gridEvent"  >
-
     <svg width="100%" height="100%" viewBox="0 0 1000 50">
       <rect  x="0" y="5" width="1000" height="28" fill="#ffffff"></rect>
       <rect v-on:click="visibleAddButton" :id="roomId" :x="lineCurTime()"  y="5" :width="1000-lineCurTime()" height="28" fill="#ffffff" ></rect>

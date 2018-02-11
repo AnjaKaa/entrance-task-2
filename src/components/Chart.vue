@@ -14,7 +14,7 @@
       </a>
       <div v-for="floor in listFloorWithRooms()" :key="floor">
         <div class="tableRow">
-          <div class="tableRowTitle">
+          <div class="tableRowTitle titleFloor">
             <b>{{floor}} этаж</b>
             </div>
           <div class="tableRowContent">
@@ -449,6 +449,12 @@ export default {
   .tableTitleRow{
     border-top: 1px solid #cccccc;
     border-bottom: 1px solid #cccccc;
+  }
+
+  .titleFloor{
+    padding-top: 20px;
+    font-size: 13px;
+    color: #858E98;
   }
 
   .tableRow {

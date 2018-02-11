@@ -172,8 +172,11 @@ export default {
     }
   },
   methods: {
-    openMessageboxOk () {
-      this.$alert('This is a message', 'Title', {
+  openMessageboxOk () {
+       let content = <div class="createMessage">
+        <h2>Встреча создана <br/>14 декабря, 15:00—17:00<br/>Готем · 4 этаж</h2>
+      </div>
+      this.$alert(content, '', {
         confirmButtonText: 'Хорошо',
         center: true,
         callback: action => {
@@ -181,17 +184,21 @@ export default {
             type: 'info',
             message: `action:${action}`
           })
-        }
+        },
+        showClose: false
       })
     },
     openMessageboxDelete () {
       // let title=<img  src="./../assets/edit.svg"/>
-      let content = 'Встреча будет удалена безвозвратно'
+      let content = <div class="deleteMessage">
+        <h2>Встреча будет <br/> удалена безвозвратно</h2>
+      </div>
 
       this.$confirm(content, '', {
         confirmButtonText: 'Удалить',
         cancelButtonText: 'Отмена',
-        center: true
+        center: true,
+        showClose: false
       }).then(() => {
         this.$message({
           type: 'success',
@@ -324,5 +331,18 @@ export default {
     letter-spacing: 0;
     line-height: 24px;
   }
+
+  .deleteMessage {
+    padding-top: 60px;
+    min-height: 40px;
+    background: url("../assets/emoji1.svg") no-repeat center center;
+  }
+
+   .createMessage {
+    padding-top: 100px;
+    min-height: 40px;
+    background: url("../assets/emoji2.svg") no-repeat center center;
+  }
+
 
 </style>
